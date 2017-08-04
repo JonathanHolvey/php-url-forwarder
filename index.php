@@ -19,9 +19,23 @@
 			$response["message"] = MESSAGE_BAD_AUTH;
 			$response["status-code"] = STATUS_UNAUTHORIZED;
 		}
-		else
-			$response["status"] = RESPONSE_SUCCESS;
-			$response["status-code"] = STATUS_OK;
+		else if (!array_key_exists("method", $data) or !array_key_exists("params", $data)) {
+			$response["status"] = RESPONSE_ERROR;
+			$response["status-code"] = STATUS_BAD_REQUEST;
+		}
+		else {
+			// Add or update URL entry
+			if ($data["method"] == "publish") {
+				$database[$data["params"]["id"]] = $data["params"]["url"];
+				$response["status"] = RESPONSE_SUCCESS;
+				$response["status-code"] = STATUS_OK;				
+			}
+			// Write database back to file	
+			if (!file_put_contents("database.json", json_encode($database))){
+				$response["status"] = RESPONSE_ERROR;
+				$response["status-code"] = STATUS_SERVER_ERROR;
+			}
+		}
 
 		// Return response as JSON
 		echo json_encode($response);

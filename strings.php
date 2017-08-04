@@ -6,5 +6,7 @@
 
 	define(STATUS_OK, 200);
 	define(STATUS_CREATED, 201);
+	define(STATUS_BAD_REQUEST, 400);
 	define(STATUS_UNAUTHORIZED, 401);
+	define(STATUS_SERVER_ERROR, 500);
 ?>
