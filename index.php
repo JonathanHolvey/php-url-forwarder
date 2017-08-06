@@ -30,10 +30,39 @@
 				$response["status"] = RESPONSE_SUCCESS;
 				$response["status-code"] = STATUS_OK;				
 			}
-			// Write database back to file	
-			if (!file_put_contents("database.json", json_encode($database))){
-				$response["status"] = RESPONSE_ERROR;
-				$response["status-code"] = STATUS_SERVER_ERROR;
+			// Add URL entry if ID doesn't exist
+			else if ($data["method"] == "add") {
+				if (array_key_exists($data["params"]["id"], $database)) {
+					$response["status"] = RESPONSE_ERROR;
+					$response["message"] = MESSAGE_ALREADY_EXISTS;
+					$response["status-code"] = STATUS_FORBIDDEN;					
+				}
+				else {
+					$database[$data["params"]["id"]] = $data["params"]["url"];
+					$response["status"] = RESPONSE_SUCCESS;
+					$response["status-code"] = STATUS_CREATED;				
+				}
+			}
+			// Delete URL entry
+			else if ($data["method"] == "delete") {
+				if (array_key_exists($data["params"]["id"], $database)) {
+					unset($database[$data["params"]["id"]]);
+					$response["status"] = RESPONSE_SUCCESS;
+					$response["status-code"] = STATUS_OK;					
+				}
+				else {
+					$database[$data["params"]["id"]] = $data["params"]["url"];
+					$response["status"] = RESPONSE_SUCCESS;
+					$response["message"] = MESSAGE_ALREADY_DELETED;
+					$response["status-code"] = STATUS_OK;				
+				}
+			}
+			// Write database back to file
+			if ($response["status"] == RESPONSE_SUCCESS) {
+				if (!file_put_contents("database.json", json_encode($database))){
+					$response["status"] = RESPONSE_ERROR;
+					$response["status-code"] = STATUS_SERVER_ERROR;
+				}
 			}
 		}
 
