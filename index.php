@@ -78,7 +78,7 @@
 			$id = "_default";
 
 		// Forward browser
-		header("Location: " . $database[$id], true, 301);
+		header("Location: " . $database[$id], true, 307);
 		exit();
 	}
 ?>
