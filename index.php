@@ -66,7 +66,8 @@
 			}
 		}
 
-		// Return response as JSON
+		// Set response code and return response as JSON
+		http_response_code($response["status-code"]);
 		echo json_encode($response);
 	}
 
