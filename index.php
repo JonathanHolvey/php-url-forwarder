@@ -14,7 +14,7 @@
 		$response = array();
 
 		// Authenticate by checking provided secret
-		if (!array_key_exists("secret", $data) or $data["secret"] != file_get_contents("secret")) {
+		if (!file_exists("secret") or !array_key_exists("secret", $data) or $data["secret"] != file_get_contents("secret")) {
 			$response["status"] = RESPONSE_ERROR;
 			$response["message"] = MESSAGE_BAD_AUTH;
 			$response["status-code"] = STATUS_UNAUTHORIZED;
