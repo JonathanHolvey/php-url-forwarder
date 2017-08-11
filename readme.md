@@ -43,7 +43,7 @@ Create a file called `secret` in the server root and save your secret key in it.
 
 ### Request structure
 
-API calls must be made with a POST request to the API endpoint `https://example.com/_api`. The payload should be a JSON encoded object, providing your authentication secret, the method you are using and any parameters it requires:
+API calls must be made with a POST request to the API endpoint `https://example.com/api`. The payload should be a JSON encoded object, providing your authentication secret, the method you are using and any parameters it requires:
 
 ```json
 {

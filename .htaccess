@@ -1,6 +1,6 @@
 RewriteEngine On
 RewriteBase /
 
-RewriteRule ^_api index.php?action=api [L,END]
+RewriteRule ^api index.php?action=api [L,END]
 RewriteRule ^([^/]*)$ index.php?action=forward&id=$1 [L,END]
 RewriteRule ^secret - [R=401]
