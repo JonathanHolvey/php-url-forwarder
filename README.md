@@ -79,3 +79,7 @@ The response of an API call consists of a JSON object containing details of how 
 	"message": "The ID provided already exists and cannot be replaced using the 'add' method. Use 'publish' instead."
 }
 ```
+
+## License
+
+This software is distributed under the GNU General Public License v3. Copyright 2017-2018 Jonathan Holvey.
