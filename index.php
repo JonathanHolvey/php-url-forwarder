@@ -51,7 +51,6 @@
 					$response["status-code"] = STATUS_OK;					
 				}
 				else {
-					$database[$data["params"]["id"]] = $data["params"]["url"];
 					$response["status"] = RESPONSE_SUCCESS;
 					$response["message"] = MESSAGE_ALREADY_DELETED;
 					$response["status-code"] = STATUS_OK;				
